@@ -2,8 +2,8 @@
 
 /**
  * Plugin Name: MCQS Qiuz Editor
- * Description: Quiz Plugin made to conduct quizes.
- * Plugin URI: https://ibenic.com
+ * Description: Quiz Plugin made to conduct quizzes.
+ * 
  */
 
 if( ! defined( 'ABSPATH' ) ) {
