@@ -16,7 +16,7 @@ class WPQR_Metaboxes {
         // Get our options
 
         $quiz_categories = get_terms(array(
-            'taxonomy' => 'quiz-category',
+            'taxonomy' => 'question-category',
             'hide_empty' => false,
         ));
 
@@ -24,7 +24,7 @@ class WPQR_Metaboxes {
         global $wpdb;
         $table_name = $wpdb->prefix . 'quiz_data';
         $quiz_data = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE post_id = %d", $post_id), ARRAY_A);
-        $quiz_category_idz = wp_get_post_terms($post_id, 'quiz-category', array('fields' => 'ids'));
+        $quiz_category_idz = wp_get_post_terms($post_id, 'question-category', array('fields' => 'ids'));
        
         if (!$quiz_data) {
             $quiz_data = array(
@@ -137,7 +137,7 @@ class WPQR_Metaboxes {
             $question = sanitize_text_field($post->post_title);
             $quiz_category_id = intval($_POST['quiz_category']);
             
-            wp_set_post_terms($post_id, $quiz_category_id, 'quiz-category');
+            wp_set_post_terms($post_id, $quiz_category_id, 'question-category');
 
             $correct_answer = sanitize_text_field($_POST['wpqr_correct'][0]);
             $answers = array_map('sanitize_text_field', $_POST['wpqr_answers']);
