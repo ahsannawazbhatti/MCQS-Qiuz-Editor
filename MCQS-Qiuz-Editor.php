@@ -397,4 +397,4 @@ function wpqr_load() {
     $plugin->includes();
     $plugin->load();
 }
-// ... Rest of the code
+
