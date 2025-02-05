@@ -194,6 +194,7 @@ function fetch_demo() {
 
     if (!empty($sql_data)) {
         foreach ($sql_data as $row) {
+            $category_id = absint($row['quiz_category_id']); // Ensure category is an integer
             $post_data = array(
                 'post_title'   => $row['question'],
                 'post_content' => '',
@@ -207,6 +208,10 @@ function fetch_demo() {
             if (is_wp_error($post_id)) {
                 echo '<div class="error"><p>Error: ' . $post_id->get_error_message() . '</p></div>';
             } else {
+                // Associate post with the category if valid
+                if ($category_id > 0) {
+                    wp_set_post_terms($post_id, array($category_id), 'question-category');
+                }
                 $data_update = array('post_id' => $post_id);
                 $data_where = array('id' => $row['id']);
                 

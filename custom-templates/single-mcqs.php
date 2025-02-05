@@ -39,7 +39,7 @@ get_header();
                             $post_id = get_the_ID();
                             $content = get_the_content();
                             $custom_taxonomyz ='question-category';
-                            $quiz_category = wp_get_post_terms($post_id, $custom_taxonomyz, array('number' => absint($number)));
+                            $question_category = wp_get_post_terms($post_id, $custom_taxonomyz, array('number' => absint($number)));
                             // Get quiz data from the custom database table
                             global $wpdb;
                             $table_name = $wpdb->prefix . 'quiz_data';
@@ -51,7 +51,7 @@ get_header();
                              <?php
 
                             echo '<ul class="post-categories">';
-                            foreach ($quiz_category as $n_term) :
+                            foreach ($question_category as $n_term) :
                             echo '<li class="cat-item cat-1 ' . esc_attr('cat-' . $n_term->term_id) . '"><a href="' . esc_url(get_term_link($n_term, $custom_taxonomyz)) . '" rel="category">' . esc_html($n_term->name) . '</a></li>';
                            endforeach;
                             echo '</ul>';

@@ -31,7 +31,7 @@ class Newsmatic_Mcqs_Related_Widget extends WP_Widget {
         extract($args);
 
         $widget_title = isset($instance['widget_title']) ? $instance['widget_title'] : '';
-        $quiz_category = isset($instance['quiz_category']) ? $instance['quiz_category'] : '';
+        $question_category = isset($instance['question-category']) ? $instance['question-category'] : '';
         $mcqs_count = isset($instance['mcqs_count']) ? $instance['mcqs_count'] : 3;
 
         // Get the current post's categories
@@ -126,7 +126,7 @@ class Newsmatic_Mcqs_Related_Widget extends WP_Widget {
                 'default' => esc_html__('Related MCQs', 'newsmatic'),
             ),
             array(
-                'name' => 'quiz_category',
+                'name' => 'question-category',
                 'type' => 'select',
                 'title' => esc_html__('Quiz Category', 'newsmatic'),
                 'description' => esc_html__('Choose the quiz category to display MCQs', 'newsmatic'),

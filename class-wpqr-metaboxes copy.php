@@ -16,7 +16,7 @@ class WPQR_Metaboxes {
         $post_id = $post->ID;
         // Get our options
         $answers = get_post_meta($post_id, '_wpqr_answers', true);
-        $quiz_category = wp_get_post_terms($post_id, 'quiz_category', array('fields' => 'ids'));
+        $question_category = wp_get_post_terms($post_id, 'question-category', array('fields' => 'ids'));
 
         ?>
         <table class="wpqr-answers form-table">
@@ -53,17 +53,17 @@ class WPQR_Metaboxes {
         </table>
         
         <div>
-            <label for="quiz_category">Quiz Category:</label>
-            <select name="quiz_category" id="quiz_category">
+            <label for="question-category">Quiz Category:</label>
+            <select name="question-category" id="question-category">
                 <option value="">Select Category</option>
                 <?php
                 $categories = get_terms(array(
-                    'taxonomy' => 'quiz_category',
+                    'taxonomy' => 'question-category',
                     'hide_empty' => false,
                 ));
 
                 foreach ($categories as $category) {
-                    $selected = in_array($category->term_id, $quiz_category) ? 'selected' : '';
+                    $selected = in_array($category->term_id, $question_category) ? 'selected' : '';
                     echo '<option value="' . $category->term_id . '" ' . $selected . '>' . esc_html($category->name) . '</option>';
                 }
                 ?>
@@ -96,7 +96,7 @@ class WPQR_Metaboxes {
             return;
         }
 
-        if (isset($_POST['wpqr_answers']) && isset($_POST['wpqr_correct']) && isset($_POST['quiz_category'])) {
+        if (isset($_POST['wpqr_answers']) && isset($_POST['wpqr_correct']) && isset($_POST['question-category'])) {
             $answers = array();
 
             // For each answer, get its order (index) and the text
@@ -112,8 +112,8 @@ class WPQR_Metaboxes {
             $correct_answer = intval($_POST['wpqr_correct']);
             update_post_meta($post_id, '_wpqr_answers', $answers);
 
-            $quiz_category = intval($_POST['quiz_category']);
-            wp_set_post_terms($post_id, $quiz_category, 'quiz_category');
+            $question_category = intval($_POST['question-category']);
+            wp_set_post_terms($post_id, $question_category, 'question-category');
         }
     }
 }

@@ -30,7 +30,7 @@ class Newsmatic_Posts_Grid_Mcqs_Widget extends WP_Widget {
         extract($args);
 
         $widget_title = isset($instance['widget_title']) ? $instance['widget_title'] : '';
-        $quiz_category = isset($instance['quiz_category']) ? $instance['quiz_category'] : '';
+        $question_category = isset($instance['question-category']) ? $instance['question-category'] : '';
         $mcqs_count = isset($instance['mcqs_count']) ? $instance['mcqs_count'] : 3;
 
         echo wp_kses_post($before_widget);
@@ -56,7 +56,7 @@ class Newsmatic_Posts_Grid_Mcqs_Widget extends WP_Widget {
                     array(
                         'taxonomy' => 'question-category',
                         'field' => 'slug',
-                        'terms' => $quiz_category,
+                        'terms' => $question_category,
                     ),
                 ),
                 'posts_per_page' => absint($mcqs_count),
@@ -111,7 +111,7 @@ class Newsmatic_Posts_Grid_Mcqs_Widget extends WP_Widget {
                 'default' => esc_html__('Popular MCQs', 'newsmatic'),
             ),
             array(
-                'name' => 'quiz_category',
+                'name' => 'question-category',
                 'type' => 'select',
                 'title' => esc_html__('Quiz Category', 'newsmatic'),
                 'description' => esc_html__('Choose the quiz category to display MCQs', 'newsmatic'),

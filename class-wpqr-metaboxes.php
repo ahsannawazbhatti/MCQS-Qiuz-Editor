@@ -88,8 +88,8 @@ class WPQR_Metaboxes {
         </table>
 
         <div>
-            <label for="quiz_category">Quiz Category:</label>
-            <select name="quiz_category" id="quiz_category">
+            <label for="question-category">Quiz Category:</label>
+            <select name="question-category" id="question-category">
                 <option value="">Select Category</option>
                 <?php
                             foreach ($quiz_categories as $category) {
@@ -133,9 +133,9 @@ class WPQR_Metaboxes {
             return;
         }
 
-        if (isset($_POST['wpqr_answers']) && isset($_POST['wpqr_correct']) && isset($_POST['quiz_category'])) {
+        if (isset($_POST['wpqr_answers']) && isset($_POST['wpqr_correct']) && isset($_POST['question-category'])) {
             $question = sanitize_text_field($post->post_title);
-            $quiz_category_id = intval($_POST['quiz_category']);
+            $quiz_category_id = intval($_POST['question-category']);
             
             wp_set_post_terms($post_id, $quiz_category_id, 'question-category');
 
